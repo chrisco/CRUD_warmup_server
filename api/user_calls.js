@@ -4,8 +4,7 @@ var knex = require('../db/knex');
 var db = require('../db/api');
 
 /**
- * @api {get} /user_calls Request List of user_calls
- * apiVersion 0.1.0
+ * @api {get} /user_calls Request list of all user_calls
  * @apiName GetAllUserCalls
  * @apiGroup UserCalls
  *
@@ -13,22 +12,21 @@ var db = require('../db/api');
  *     HTTP/1.1 200 OK
  * [
  *   {
- *     "id": 1,
- *     "app_user_id": null,
- *     "date": "2016-05-05T06:00:00.000Z",
- *     "left_message": true,
- *     "incoming": false
- *   },
- *   {
- *     "id": 1,
- *     "app_user_id": null,
- *     "date": "2016-05-08T06:00:00.000Z",
- *     "left_message": false,
- *     "incoming": true
- *   }
+ *      "id": 1,
+ *      "app_user_id": 1,
+ *      "date": "2016-05-05T06:00:00.000Z",
+ *      "left_message": true,
+ *      "incoming": false
+ *    }, {
+ *      "id": 4,
+ *      "app_user_id": 2,
+ *      "date": "2016-05-08T06:00:00.000Z",
+ *      "left_message": false,
+ *      "incoming": true
+ *    }
  * ]
  */
- router.get('/', function(req, res, next) {
+router.get('/', function(req, res, next) {
 	db.getAllUserCalls()
 		.then(function(user_calls) {
 			res.json({
@@ -37,6 +35,21 @@ var db = require('../db/api');
 		});
 });
 
+/**
+ * @api {get} /user_calls/:id Request user_call with ID
+ * @apiName GetUserCallById
+ * @apiGroup UserCalls
+ *
+ * @apiSuccessExample {json} Success-Response:
+ *     HTTP/1.1 200 OK
+ * {
+ *   "id": 1,
+ *   "app_user_id": 1,
+ *   "date": "2016-05-05T06:00:00.000Z",
+ *   "left_message": true,
+ *   "incoming": false
+ * }
+ */
 router.get('/:id', function(req, res, next) {
 	db.getUserCallById(req.params.id)
 		.then(function(user_call) {
@@ -46,6 +59,27 @@ router.get('/:id', function(req, res, next) {
 		});
 });
 
+/**
+ * @api {post} /user_calls/ Create user_call
+ * @apiName CreateUserCall
+ * @apiGroup UserCalls
+ *
+ * @apiSuccessExample {json} Success-Response:
+ *     HTTP/1.1 200 OK
+ * {
+ *   "id": 1,
+ *   "app_user_id": 1,
+ *   "date": "2016-05-05T06:00:00.000Z",
+ *   "left_message": true,
+ *   "incoming": false
+ * }
+ *
+ * @apiErrorExample Error-Response:
+ *     HTTP/1.1 404 Not Found
+ * {
+ *   "Error": error
+ * }
+ */
 router.post('/', function(req, res, next) {
 	console.log(req.body);
 	db.createUserCall(req.body)
@@ -60,6 +94,27 @@ router.post('/', function(req, res, next) {
 		});
 });
 
+/**
+ * @api {put} /user_calls/:id Update user_call with ID
+ * @apiName UpdateUserCall
+ * @apiGroup UserCalls
+ *
+ * @apiSuccessExample {json} Success-Response:
+ *     HTTP/1.1 200 OK
+ * {
+ *   "id": 1,
+ *   "app_user_id": 1,
+ *   "date": "2016-05-05T06:00:00.000Z",
+ *   "left_message": true,
+ *   "incoming": false
+ * }
+ *
+ * @apiErrorExample Error-Response:
+ *     HTTP/1.1 404 Not Found
+ * {
+ *   "Error": "User_Call does not exist"
+ * }
+ */
 router.put('/:id', function(req, res, next) {
 	db.getUserCallById(req.params.id)
 		.then(function(data) {
@@ -77,6 +132,23 @@ router.put('/:id', function(req, res, next) {
 		});
 });
 
+/**
+ * @api {delete} /user_calls/:id Delete user_call with ID
+ * @apiName DeleteUserCall
+ * @apiGroup UserCalls
+ *
+ * @apiSuccessExample {json} Success-Response:
+ *     HTTP/1.1 200 OK
+ * {
+ *   "Message": "User_Call deleted"
+ * }
+ *
+ * @apiErrorExample Error-Response:
+ *     HTTP/1.1 404 Not Found
+ * {
+ *   "Error": "User_Call does not exist"
+ * }
+ */
 router.delete('/:id', function(req, res, next) {
 	console.log(req.params.id);
 	db.getUserCallById(req.params.id)
