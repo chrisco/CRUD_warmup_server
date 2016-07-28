@@ -5,6 +5,7 @@ var db = require('../db/api');
 
 /**
  * @api {get} /user_calls Request List of user_calls
+ * apiVersion 0.1.0
  * @apiName GetAllUserCalls
  * @apiGroup UserCalls
  *

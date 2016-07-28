@@ -1,1 +1,1 @@
-define({  "name": "CRUD_warmup_server",  "version": "0.0.0",  "description": "",  "sampleUrl": false,  "apidoc": "0.2.0",  "generator": {    "name": "apidoc",    "time": "2016-07-28T18:59:03.771Z",    "url": "http://apidocjs.com",    "version": "0.16.1"  }});
+define({  "name": "Call Log API",  "version": "0.1.0",  "description": "Call Log JSON API",  "sampleUrl": false,  "apidoc": "0.2.0",  "generator": {    "name": "apidoc",    "time": "2016-07-28T19:24:27.024Z",    "url": "http://apidocjs.com",    "version": "0.16.1"  }});

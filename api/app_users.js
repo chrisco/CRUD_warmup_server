@@ -8,6 +8,7 @@ var salt = bcrypt.genSaltSync(10);
 
 /**
  * @api {get} /app_users Request List of app_users
+ * apiVersion 0.1.0
  * @apiName GetAllAppUsers
  * @apiGroup AppUsers
  *
