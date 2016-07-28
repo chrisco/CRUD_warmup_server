@@ -14,8 +14,11 @@ var app = express();
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
+// app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+// For my API documentation, which will be served at "/"
+app.use(express.static('doc'));
 
 app.use('/api', api);
 

@@ -3,7 +3,31 @@ var router = express.Router();
 var knex = require('../db/knex');
 var db = require('../db/api');
 
-router.get('/', function(req, res, next) {
+/**
+ * @api {get} /user_calls Request List of user_calls
+ * @apiName GetAllUserCalls
+ * @apiGroup UserCalls
+ *
+ * @apiSuccessExample {json} Success-Response:
+ *     HTTP/1.1 200 OK
+ * [
+ *   {
+ *     "id": 1,
+ *     "app_user_id": null,
+ *     "date": "2016-05-05T06:00:00.000Z",
+ *     "left_message": true,
+ *     "incoming": false
+ *   },
+ *   {
+ *     "id": 1,
+ *     "app_user_id": null,
+ *     "date": "2016-05-08T06:00:00.000Z",
+ *     "left_message": false,
+ *     "incoming": true
+ *   }
+ * ]
+ */
+ router.get('/', function(req, res, next) {
 	db.getAllUserCalls()
 		.then(function(user_calls) {
 			res.json({

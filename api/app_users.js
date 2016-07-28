@@ -6,6 +6,30 @@ var db = require('../db/api');
 var bcrypt = require('bcrypt');
 var salt = bcrypt.genSaltSync(10);
 
+/**
+ * @api {get} /app_users Request List of app_users
+ * @apiName GetAllAppUsers
+ * @apiGroup AppUsers
+ *
+ * @apiSuccessExample {json} Success-Response:
+ *     HTTP/1.1 200 OK
+ * [
+ *   {
+ *     "id": 1,
+ *     "pw": "$2a$04$oSY.1hOj44Bxezi.NTsr/.HZIlgTqPIueVFqNri7Y5sOD4eXm91Yi",
+ *     "fname": "Bob",
+ *     "lname": "Smith",
+ *     "phone": "5551212"
+ *   },
+ *   {
+ *     "id": 2,
+ *     "pw": "$2a$04$oSY.1hOj44Bxezi.NTsr/.HZIlgTqPIueVFqNri7Y5sOD4eXm91Yi",
+ *     "fname": "Alice",
+ *     "lname": "Jones",
+ *     "phone": "5551212"
+ *   }
+ * ]
+ */
 router.get('/', function(req, res, next) {
 	db.getAllAppUsers()
 		.then(function(app_users) {
