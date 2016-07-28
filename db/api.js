@@ -10,5 +10,17 @@ module.exports = {
 
 	createUser: function(user) {
 		return knex('app_user').insert(user, 'id');
+	},
+
+	getUserById: function(id) {
+		return knex('app_user').where({
+			id: id
+		}).first();
+	},
+
+	deleteUserById: function(id) {
+		return knex('app_user').where({
+			id: id
+		}).del();
 	}
 };
