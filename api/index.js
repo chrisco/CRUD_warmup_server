@@ -7,7 +7,4 @@ router.use('/user_calls', user_calls);
 var app_users = require('./app_users');
 router.use('/app_users', app_users);
 
-var signup = require('./signup');
-router.use('/signup', signup);
-
 module.exports = router;
